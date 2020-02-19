@@ -11,5 +11,9 @@ public class Departments {
         this.employeeNumber = employeeNumber;
     }
 
+    public String getDepartmentName(){
+        return departmentName;
+    }
+
 
 }

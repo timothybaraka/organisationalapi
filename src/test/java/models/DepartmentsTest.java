@@ -13,9 +13,15 @@ public class DepartmentsTest {
     }
 
     @Test
-    public void NewDepartment_true() {
+    public void createNewDepartment_finance() {
         Departments newDepartments = new Departments("finance", "deal with money", 25);
-        assertEquals(true, newDepartments instanceof Departments);
+        assertEquals("finance", newDepartments.getDepartmentName());
+    }
+
+    @Test
+    public void createNewDepartment_finance() {
+        Departments newDepartments = new Departments("finance", "deal with money", 25);
+        assertEquals("finance", newDepartments.getDepartmentName());
     }
 }
 
