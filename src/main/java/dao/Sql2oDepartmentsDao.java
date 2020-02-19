@@ -1,19 +1,40 @@
 package dao;
 
+import models.Departments;
+import org.sql2o.Connection;
+import org.sql2o.*;
+import  java.util.List;
+
 import java.util.ArrayList;
 
-public class Sql2oDepartmentsDao {
+public class Sql2oDepartmentsDao implements DepartmentDao{
+    private final Sql2o sql2o;
 
-    @Override
-    public void addDepartmentsToNews(Department department, News news) {
-//do stuff here.
+    public Sql2oDepartmentsDao(Sql2o sql2o){
+        this.sql2o = sql2o;
     }
 
     @Override
-    public List<News> getAllFoodtypesByDepartment(int departmentId) {
-        List<News> news = new ArrayList(); //empty list
-        return news;
+    public void add(Departments departments){
+        String sql = "INSERT INTO departments(name, description, numberOfemployees)";
+        try(Connection con = sql2o.open()){
+            int id = (int) con.createQuery(sql, true)
+                    .bind(departments)
+                    .executeUpdate()
+                    .getKey();
+            departments.setId(id);
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
     }
+
+    @Override
+    public List<Departments> getAll() {
+        try(Connection con = sql2o.open()){
+            return con.createQuery("SELECT * FROM departments")
+                    .executeAndFetch(Departments.class);
+        }
+    };
 
 
     @Override

@@ -9,7 +9,7 @@ public class UsersTest {
     @Test
     public void createNewUser_true() {
         Users  users= new Users("lenny","chairman", "counting", "finance");
-        assertEquals(true, users instanceof News);
+        assertEquals(true, users instanceof Users);
     }
 
     @Test

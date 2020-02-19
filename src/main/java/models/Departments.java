@@ -4,6 +4,9 @@ public class Departments {
     private String departmentName;
     private String Description;
     private Integer employeeNumber;
+    private int id;
+
+
 
     public Departments(String departmentName, String Description, Integer employeeNumber){
         this.departmentName = departmentName;
@@ -23,5 +26,12 @@ public class Departments {
         return employeeNumber;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
 }
