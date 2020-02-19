@@ -8,5 +8,11 @@ public class News {
         this.generalNews = generalNews;
         this.departmentalNews = departmentalNews;
     }
+    public String getGeneralNews(){
+        return generalNews;
+    }
+    public String getDepartmentalNews(){
+        return departmentalNews;
+    }
 
 }

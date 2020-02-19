@@ -15,5 +15,13 @@ public class Departments {
         return departmentName;
     }
 
+    public String getDescription(){
+        return departmentName;
+    }
+
+    public int getEmployeeNumber(){
+        return employeeNumber;
+    }
+
 
 }
