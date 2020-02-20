@@ -20,7 +20,11 @@ Postman to display the frontend.
 
 ## Technologies Used
 Java - the language. 
-
+Junit
+Spark
+POSTGRESQL
+JDBC API
+POSTMAN
 Intellij - IDE
 
 ## CodeBeat score
