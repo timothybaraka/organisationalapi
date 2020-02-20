@@ -35,4 +35,7 @@ public class Users {
     public void setId(int id) {
         this.id = id;
     }
+
+    public void add(Users users) {
+    }
 }

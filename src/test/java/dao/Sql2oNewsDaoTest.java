@@ -1,9 +1,10 @@
 package dao;
 
-import com.sun.jdi.connect.spi.Connection;
 import org.junit.Before;
 import org.junit.Test;
 import models.News;
+import org.sql2o.Connection;
+import org.sql2o.Sql2o;
 
 import static org.junit.Assert.*;
 
@@ -15,7 +16,7 @@ public class Sql2oNewsDaoTest {
         public void setUp() throws Exception {
             String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
             Sql2o sql2o = new Sql2o(connectionString, "", "");
-            NewsDao = new Sql2oNewsDao(sql2o);
+            NewsDao newsDao= new Sql2oNewsDao(sql2o);
             conn = sql2o.open(); //keep connection open through entire test so it does not get erased
         }
 
@@ -26,5 +27,6 @@ public class Sql2oNewsDaoTest {
         newsDao.add(news);
         assertNotEquals(originalTaskId, news.getId()); //how does this work?
     }
+
 
 }

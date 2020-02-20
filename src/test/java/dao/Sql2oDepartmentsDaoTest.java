@@ -29,6 +29,40 @@ public class Sql2oDepartmentsDaoTest {
         return new Departments("accounts", "financial issues",8);
     }
 
+    @Test
+    public void addingADepartmentSetsId() throws Exception{
+        Departments departments = testDepartment();
+        int departmentId = departments.getId();
+        departmentsDao.add(departments);
+        assertNotEquals(departmentId, departments.getId());
+    }
+//    @Test
+//    public void findByIdCanFindDepartmentById() throws Exception{
+//        Department department = testDepartment();
+//        departmentDao.add(department);
+//        Department foundDepartment = departmentDao.findById(department.getId());
+//        assertEquals(department, foundDepartment);
+//    }
+    @Test
+    public void getAllDepartmentReturnsAllCreatedDepartments() throws Exception{
+        Departments departments = testDepartment();
+        Departments anotherDepartment = new Departments("hr", "deals with all employees", 4);
+        departmentsDao.add(departments);
+        departmentsDao.add(anotherDepartment);
+        assertEquals(2, departmentsDao.getAll().size());
+    }
+//    @Test
+//    public void ifNoDepartmentExistsReturnsEmpty() throws Exception{
+//        assertEquals(0, departmentDao.getAll().size());
+//    }
+//    @Test
+//    public void addingNews() throws Exception {
+//        Departments departments = new Departments ("finance","money",25);
+//        int originalDepId = departments.getId();
+//        departmentsDao.add(departments);
+//        assertNotEquals(originalDepId, departments.getId()); //how does this work?
+//    }
+
 
 
 //    @Test
