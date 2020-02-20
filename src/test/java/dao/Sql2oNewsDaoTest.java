@@ -1,45 +1,30 @@
 package dao;
 
+import com.sun.jdi.connect.spi.Connection;
+import org.junit.Before;
 import org.junit.Test;
+import models.News;
 
 import static org.junit.Assert.*;
 
 public class Sql2oNewsDaoTest {
+        private Sql2oNewsDao newsDao; //ignore me for now. We'll create this soon.
+        private Connection conn; //must be sql2o class conn
 
-    public void addFoodTypeToDepartmentsAddsTypeCorrectly() throws Exception {
-
-        Departments testDepartments = setupDepartments();
-        Departments altDepartments = setupAltDepartments();
-
-        restaurantDao.add(testDepartments);
-        restaurantDao.add(altDepartments);
-
-        News testNews = setupNewNews();
-
-        newsDao.add(testNews);
-
-        newsDao.addNewsToDepartments(testNews, testDepartments);
-        newsDao.addNewsToDepartments(testNews, altDepartments);
-
-        assertEquals(2, newsDao.getAllDepartmentssForANews(testNews.getId()).size());
-    }
+        @Before
+        public void setUp() throws Exception {
+            String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+            Sql2o sql2o = new Sql2o(connectionString, "", "");
+            NewsDao = new Sql2oNewsDao(sql2o);
+            conn = sql2o.open(); //keep connection open through entire test so it does not get erased
+        }
 
     @Test
-    public void deleteingDepartmentsAlsoUpdatesJoinTable() throws Exception {
-        News testNews  = new News("Seafood");
-        newsDao.add(testNews);
-
-        Departments testDepartments = setupDepartments();
-        departmentsDao.add(testDepartments);
-
-        Departments altDepartments = setupAltDepartments();
-        departmentsDao.add(altDepartments);
-
-        departmentsDao.addDepartmentsToNews(testDepartments,testNews);
-        departmentsDao.addDepartmentsToNews(altDepartments, testNews);
-
-        departmentsDao.deleteById(testDepartments.getId());
-        assertEquals(0, departmentsDao.getAllNewssByDepartments(testDepartments.getId()).size());
+    public void addingNews() throws Exception {
+        News news = new News ("sacking","promotion");
+        int originalTaskId = news.getId();
+        newsDao.add(news);
+        assertNotEquals(originalTaskId, news.getId()); //how does this work?
     }
 
 }

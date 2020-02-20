@@ -5,6 +5,7 @@ public class Users {
     private String userPosition;
     private String userRole;
     private String departmentId;
+    private int id;
 
 
     public Users(String userName, String userPosition, String userRole, String departmentId){
@@ -27,4 +28,11 @@ public class Users {
         return departmentId;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
